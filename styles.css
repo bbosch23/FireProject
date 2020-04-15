@@ -1,0 +1,39 @@
+img {
+	/*can work with height at 100%for some reason*/
+	width: 100%;
+	object-fit: cover
+}
+
+#sw,
+#se,
+#ne,
+#nw {
+	overflow: scroll
+}
+
+div::-webkit-scrollbar {
+	display: none;
+}
+
+#overlay {
+	background-color: #00000063;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.large {
+	width: 100%;
+	height: 100%
+}
+
+
+#frameLOC {
+  /*LOCAL CODE*/
+  margin-top: -150px
+}
+#frameNE {
+  /* NORTH EAST CODE*/
+  margin-top: -350px
+}

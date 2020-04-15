@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="900" />
+    <!-- Refresh every 15 minutes -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body onload="officer()">
+    <style type="text/css">
+      /* Sort your code, friend*/
+      div {
+        position: absolute;
+        padding: 1px;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      #nw {
+        background: #C0C0C0;
+        top: 0;
+        left: 0;
+        right: 49%;
+        bottom: 50%;
+      } /*TL*/
+      #map {
+        background: #C0C0C0;
+        top: 0;
+        left: 50%;
+        right: 0;
+        bottom: 50%;
+      } /*TR*/
+      #sw {
+        background: #C0C0C0;
+        top: 50%;
+        left: 0;
+        right: 48.9%;
+        bottom: 0;
+      } /*BL*/
+      #se {
+        background: #C0C0C0	;
+        top: 50%;
+        left: 51.1%;
+        right: 0;
+        bottom: 0;
+      } /*BR*/
+
+      h2,
+      h1,
+      p {
+        text-align: center;
+      }
+      #contact {
+        position: absolute;
+        bottom: 0px;
+        right: 10px;
+        text-align: right;
+      }
+      select {
+        position: absolute;
+        bottom: 40px;
+        right: 10px;
+        text-align: right;
+      }
+      button {
+        position: absolute;
+        bottom: 38px;
+        right: 120px;
+        text-align: right;
+      }
+      .OutlineText {
+	font: Tahoma, Geneva, sans-serif;
+	font-size: 40px;
+    color: #FFFFFF;
+    text-shadow:
+    /* Outline */
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000,  
+    -2px 0 0 #000000,
+    2px 0 0 #000000,
+    0 2px 0 #000000,
+    0 -2px 0 #000000; /* Terminate with a semi-colon */
+}
+      /*select {
+display: block;
+margin: 0 auto;
+}*/
+
+      /* End Of Styles, Move this to a external document with the file extension of .css*/
+    </style>
+    <div id="overlaynw"></div>
+    <div id="overlayne"></div>
+    <div id="overlaysw"></div>
+    <div id="overlayse"></div>
+
+    <div id="map"></div>
+    <!-- MAP STUFF -->
+    <script>
+      function initMap() {
+         map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 39.7393, lng: -75.2241}
+        });
+
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+      }
+    </script>
+
+    <!-- OFFICER STUFF -->
+
+    <div id="se">
+      <p></p>
+      <h2 class="OutlineText">BATTALION 23 IS STAFFED BY</h2>
+      <h1 class="OutlineText"><span id="setOfficer"></span></h1>
+      <select id="officer">
+        <option>Select officer</option>
+        <option value="2301">CAR2301</option>
+        <option value="2302">DEP2302</option>
+        <option value="2303">AST2303</option>
+        <option value="23101">CAR23101</option>
+        <option value="23102">DEP23102</option>
+        <option value="23104">CPT23104</option>
+        <option value="23201">CAR23201</option>
+        <option value="23202">DEP23202</option>
+        <option value="23203">AST23203</option>
+      </select>
+      <button onclick="submit()">Submit</button>
+      <p id="contact">This page was made by Bosch Systems</p>
+    </div>
+
+    <!-- RADAR STUFF -->
+
+    <div id="nw">
+      <img
+        id="frameNE"
+        class="swimg"
+        src="https://radar.weather.gov/ridge/Conus/Loop/northeast_loop.gif"
+      />
+    </div>
+
+    <!-- FORCAST STUFF -->
+
+    <div id="sw">
+      <iframe
+        style="display: block;"
+        src="https://cdnres.willyweather.com/widget/loadView.html?id=120863"
+        width="1000"
+        height="520"
+        frameborder="0"
+        scrolling="no"
+      ></iframe>
+
+      <a
+        style="margin: -20px 0 0 0;display: block;z-index: 1;height: 20px;text-indent: -9999em;position: relative"
+        href="https://www.willyweather.com/nj/gloucester-county/mullica-hill.html"
+        rel="nofollow"
+        >Mullica Hill weather forecast
+      </a>
+    </div>
+
+    <!-- TINT FOR DARK MODE 
+            <div id="overlay">
+            </div> 
+    -->
+
+    <!-- GOOGLE API STUFF -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFZyLgBDFvThjBzdX5RiUe5sqIXG0lkNA&callback=initMap"
+    >
+
+      //officer getting thing
+    </script>
+    <script>
+      function officer() {
+        var setOfficer = JSON.parse(localStorage.getItem("sOfficer"));
+        var currentStaff = document.getElementById("setOfficer");
+        currentStaff.textContent = setOfficer;
+
+      }
+      function submit() {
+        var sOfficer = document.getElementById("officer");
+
+	      var result = sOfficer.options[sOfficer.selectedIndex].value;
+
+        localStorage.setItem("sOfficer", result);
+      }
+    </script>
+  </body>
+</html>
